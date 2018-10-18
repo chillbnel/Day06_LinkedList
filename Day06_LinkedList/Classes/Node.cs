@@ -6,10 +6,10 @@ namespace Day06_LinkedList.Classes
 {
     class Node
     {
-        public int Value { get; set; } //can change to "int" to "object" to ensure that we're not bound to a certain type
+        public object Value { get; set; } //can change to "int" to "object" to ensure that we're not bound to a certain type
         public Node Next { get; set; }
 
-        public Node(int value)
+        public Node(object value)
         {
             Value = value;
         }

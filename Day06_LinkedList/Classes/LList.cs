@@ -7,17 +7,17 @@ namespace Day06_LinkedList.Classes
     class LList
     {
         /// <summary>
-        /// Always points to the first node in the LList
+        /// Head: Always points to the first node in the LList
         /// </summary>
         public Node Head { get; set; }
 
         /// <summary>
-        /// 
+        /// Current: This is used to transverse the LList
         /// </summary>
         public Node Current { get; set; }
 
         /// <summary>
-        /// LL requires a node at the time of creation to be the HEAD
+        /// LList requires a node at the time of creation to be the HEAD
         /// </summary>
         /// <param name="node"></param>
         public LList(Node node)
@@ -26,19 +26,15 @@ namespace Day06_LinkedList.Classes
             Current = node;
         }
 
-        //adding anode at the beginning: O(1)
-        //Space: O(1) because no additional memory is being allocated
+        //Adds a node at the beginning of the LList, Big O: O(1), no additional memory is being allocated
         public void Add(Node node)
         {
-            Current = Head;
             node.Next = Head;
             Head = node;
             Current = Head;
-
         }
-
-        //we must traverse in order to print, so O(n)
-        //Space: O(1) because no additional memory is being allocated
+       
+        //Traverses LList in order to print, Big O T: O(n), S: O(1)
         public void Print()
         {
             Current = Head;
@@ -50,11 +46,9 @@ namespace Day06_LinkedList.Classes
             }
 
             Console.WriteLine($"{Current.Value} --> NULL");
-            Current = Head;
         }
 
-        //we have to traverse in order so big O is O(n)
-        //Space: O(1) because no additional memory is being allocated
+        //Traverses the LList in order to append a new node to the end of the list, Big O T: O(n), S: O(1)
         public void Append(Node newNode)
         {
             Current = Head;
@@ -64,11 +58,9 @@ namespace Day06_LinkedList.Classes
             }
 
             Current.Next = newNode;
-            Current = Head;
         }
 
-        //we have to traverse so big O is O(n)
-        //Space: O(1) because no additional memory is being allocated
+        //Traverses the LList in order to add a new node immeditely before the target node, Big O T: O(n), S: O(1)
         public void AddBefore(Node newNode, Node existingNode)
         {
             Current = Head;
@@ -78,13 +70,54 @@ namespace Day06_LinkedList.Classes
                 return;
             }
 
-            while (Current.Next.Value == existingNode.Value)
+            while (Current.Next != null)
             {
-                newNode.Next = existingNode;
-                Current.Next = newNode;
-                return;
+                if (Current.Next.Value == existingNode.Value)
+                {
+                    newNode.Next = existingNode;
+                    Current.Next = newNode;
+                    return;
+                }
+                Current = Current.Next;
             }
-            Current = Current.Next
         }
+
+        //Traverses the LList in order to find the target value, Big O T: O(n), S: O(1)
+        public Node FindNode(object value)
+        {
+            Current = Head;
+            while (Current.Next != null)
+            {
+                if (Current.Value == value)
+                {
+                    return Current;
+                }
+                Current = Current.Next;
+            }
+        }
+
+        public void AddAfter(Node newNode, Node existingNode)
+        {
+            Current = Head;
+
+            if (Head.Value == existingNode.Value)
+            {
+                newNode.Next = Head.Next;
+                Head.Next = newNode;
+            }
+            while (Current.Next != null)
+            {
+                if (Current.Value = existingNode.Value)
+                {
+                    newNode.Next = Current.Next;
+                    Current.Next = newNode;
+                    return;
+                }
+                Current = Current.Next;
+            }
+            Current.Next = newNode;
+            newNode.Next = null;
+        }
+
     }
 }
