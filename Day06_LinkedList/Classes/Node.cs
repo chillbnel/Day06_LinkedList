@@ -6,7 +6,7 @@ namespace Day06_LinkedList.Classes
 {
     class Node
     {
-        public object Value { get; set; } //can change to "int" to "object" to ensure that we're not bound to a certain type
+        public object Value { get; set; } //changed from "int" to "object" to ensure that we're not bound to a certain type
         public Node Next { get; set; }
 
         public Node(object value)

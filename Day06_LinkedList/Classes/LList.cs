@@ -83,7 +83,7 @@ namespace Day06_LinkedList.Classes
         }
 
         //Traverses the LList in order to find the target value, Big O T: O(n), S: O(1)
-        public Node FindNode(object value)
+        public Node FindValue(object value)
         {
             Current = Head;
             while (Current.Next != null)
@@ -96,6 +96,7 @@ namespace Day06_LinkedList.Classes
             }
         }
 
+        //Traverses the LList in order to add a new node immeditely after the target node, Big O T: O(n), S: O(1)
         public void AddAfter(Node newNode, Node existingNode)
         {
             Current = Head;
